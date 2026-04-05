@@ -13,19 +13,19 @@ host = os.getenv("POSTGRES_HOST")
 port = os.getenv("POSTGRES_PORT", 5432)
 database = "bgd"
 
-# print(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
-#
-# engine = create_engine(
-#         f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
-#     )
-
-
 for year in os.listdir("data/"):
     Path(f"buff/csv/").mkdir(parents=True, exist_ok=True)
     for month_parquet in os.listdir(f"data/{year}/"):
         df = pd.read_parquet(f"data/{year}/{month_parquet}", engine="pyarrow")
         print(f'Save {month_parquet} to csv')
         df.to_csv(f"buff/csv/{month_parquet}.csv")
+
+# print(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
+#
+# engine = create_engine(
+#         f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
+#     )
+
 
 # with pc.connect(dbname=database, user=user, password=password, host=host, port=port) as conn:
 #     with conn.cursor() as cursor:
