@@ -6,3 +6,9 @@ Yellow and green taxi trip records include fields capturing pickup and drop-off 
 
 ### [Data dictionary](https://www.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_hvfhs.pdf)
 
+## Problem statement:
+Predicting how likely is that taxi trip will resoult in a tip.
+## Data risks:
+- Ingesting data to database directly from drive instead of using insert statements.
+- Most of the trips have 0 tip, so it might be necessary to remove a lot of data from the dataset to balance the data.
+- Reading data from dataset for training might prove difficult, because of its size.
