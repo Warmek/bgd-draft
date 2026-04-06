@@ -12,3 +12,6 @@ Predicting how likely is that taxi trip will resoult in a tip.
 - Ingesting data to database directly from drive instead of using insert statements.
 - Most of the trips have 0 tip, so it might be necessary to remove a lot of data from the dataset to balance the data.
 - Reading data from dataset for training might prove difficult, because of its size.
+
+## Database schema:
+<img width="1501" height="1238" alt="image" src="https://github.com/user-attachments/assets/a0757386-7317-4dbb-bc39-8f56f0598f66" />
