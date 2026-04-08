@@ -3,26 +3,23 @@ import os
 from pathlib import Path
 
 
-user = os.getenv("POSTGRES_USER")
-password = os.getenv("POSTGRES_PASSWORD")
-host = os.getenv("POSTGRES_HOST")
-port = os.getenv("POSTGRES_PORT", 5432)
-database = "bgd"
 
 for year in os.listdir("data/"):
     Path(f"buff/csv/").mkdir(parents=True, exist_ok=True)
     for month_parquet in os.listdir(f"data/{year}/"):
         df = pd.read_parquet(f"data/{year}/{month_parquet}", engine="pyarrow")
-        print(f'Save {month_parquet} to csv')
-        df.to_csv(f"buff/csv/{month_parquet}.csv")
+        print(len(df))
+        print("----==== Null count ====----")
+        print(df.isnull().sum())
 
-
-
-# Load into database
-# from dotenv import load_dotenv, dotenv_values
-# import psycopg2 as pc
-# from sqlalchemy import create_engine
+# Load to database
 # load_dotenv()
+#
+# user = os.getenv("POSTGRES_USER")
+# password = os.getenv("POSTGRES_PASSWORD")
+# host = os.getenv("POSTGRES_HOST")
+# port = os.getenv("POSTGRES_PORT", 5432)
+# database = "bgd"
 # print(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
 #
 # engine = create_engine(
