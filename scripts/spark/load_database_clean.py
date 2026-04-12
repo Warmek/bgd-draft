@@ -20,6 +20,8 @@ mappings = {
 
 for year in os.listdir("data/"):
     Path(f"buff/cleaned_csv/").mkdir(parents=True, exist_ok=True)
+    if year=='other':
+        break;
     for month_parquet in os.listdir(f"data/{year}/"):
         df = spark.read.parquet(f"data/{year}/{month_parquet}").cache()
         # Drop rows with nulls (about 24.6%)

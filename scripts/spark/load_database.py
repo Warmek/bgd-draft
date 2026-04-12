@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from pyspark import StorageLevel
 from pyspark.sql import SparkSession
 
 
@@ -20,6 +19,8 @@ port = os.getenv("POSTGRES_PORT", 5432)
 database = "bgd"
 
 for year in os.listdir("data/"):
+    if year=='other':
+        break;
     Path(f"buff/csv/").mkdir(parents=True, exist_ok=True)
     for month_parquet in os.listdir(f"data/{year}/"):
         df = spark.read.parquet(f"data/{year}/{month_parquet}").cache()
