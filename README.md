@@ -15,3 +15,12 @@ Predicting how likely is that taxi trip will resoult in a tip.
 
 ## Database schema:
 <img width="1501" height="1238" alt="image" src="https://github.com/user-attachments/assets/a0757386-7317-4dbb-bc39-8f56f0598f66" />
+
+## Spark flow
+```mermaid
+flowchart TD
+download_data.py --> 
+load_database.py --> 
+load_database_clean.py --> 
+load_database_map.py
+```
