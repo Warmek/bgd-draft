@@ -16,34 +16,3 @@ for year in os.listdir("data/"):
         print(f'Save {month_parquet} to csv')
         df.to_csv(f"buff/csv/{month_parquet}.csv")
 
-
-
-# Load into database
-# from dotenv import load_dotenv, dotenv_values
-# import psycopg2 as pc
-# from sqlalchemy import create_engine
-# load_dotenv()
-# print(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}")
-#
-# engine = create_engine(
-#         f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}"
-#     )
-#
-#
-# with pc.connect(dbname=database, user=user, password=password, host=host, port=port) as conn:
-#     with conn.cursor() as cursor:
-#
-#         for year in os.listdir("data/"):
-#             for month_parquet in os.listdir(f"data/{year}/"):
-#                 df = pd.read_parquet(f"data/{year}/{month_parquet}", engine="pyarrow")
-#                 size = df.size
-#                 n=100_000
-#                 list_df = [df[i:i+n] for i in range(0,len(df),n)]
-#
-#                 for chunk_df in list_df:
-#                     chunk_df.to_sql(name='trips', con=engine, if_exists='append', method='multi')
-#                     print(f"Inserted {n}/{size} - {(n/size)*100}")
-#
-#                     conn.commit()
-#
-#         conn.close()
