@@ -24,7 +24,7 @@ database = "bgd"
 
 with pc.connect(dbname=database, user=user, password=password, host=host, port=port) as conn:
     with conn.cursor() as cursor:
-        df = spark.read.parquet(f"data/taxi_zone_lookup.csv").cache()
-        df.write.jdbc(f"postgresql+psycopg2://{user}:{password}@{host}:{port}/{database}", "zones")
+        df = spark.read.csv(f"data/other/taxi_zone_lookup.csv").cache()
+        df.write.format("jdbc").option("url", f"jdbc:postgresql://{user}:{password}@{host}:{port}/{database}").option("dbtable", "zones").option("user", "username").option("password", "password").option("driver", "org.postgresql.Driver")
 
 
